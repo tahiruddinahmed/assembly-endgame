@@ -1,6 +1,9 @@
+import { useState } from "react"
 import lanaguages from "./lanaguages"
 
 function App() {
+  const [currentWord, setCurrentWord] = useState("react")
+
   
   return (
     <>
@@ -17,9 +20,9 @@ function App() {
        </div>
       </header>
 
-      <main className="w-full flex justify-center">
+      <main className="w-full flex flex-col justify-center items-center">
         {/* lanaguages section */}
-        <section className="w-[253.5px] h-[51.5px] flex flex-wrap gap-[1.5px] content-start justify-center overflow-hidden">
+        <section className="w-[253.5px] flex flex-wrap gap-[1.5px] content-start justify-center overflow-hidden mb-10">
           {lanaguages.map(lang => {
             return (
               <div 
@@ -29,6 +32,17 @@ function App() {
               >
                 {lang.name}
               </div>
+            )
+          })}
+        </section>
+
+
+        {/* Guest Word section */}
+        <section className="flex justify-between gap-[2.5px]">
+          {currentWord.split("").map(word => {
+
+            return (
+              <span key={word} className="px-[6px] py-[8px] w-[45px] bg-[#323232] text-center text-[18px] border-b border-[#F9F4DA] text-[#F9F4DA] font-bold">{word.toUpperCase()}</span>
             )
           })}
         </section>
