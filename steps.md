@@ -34,5 +34,12 @@
      displaying them.
   3. Style to look like the design. You can get the underline 
      effect on the box using `border-bottom`.
+
+## Step 5: Goal: Build out the main parts of our app
+ 
+ * Challenge: 
+  Display the keyboard ⌨️. Use `<button>`s for each letter
+  since it'll need to be clickable and tab-accessible.
+ 
  
  

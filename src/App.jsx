@@ -4,6 +4,7 @@ import lanaguages from "./lanaguages"
 function App() {
   const [currentWord, setCurrentWord] = useState("react")
 
+  const alphabets = "abcdefghijklmnopqrstuvwxyz";
   
   return (
     <>
@@ -38,13 +39,38 @@ function App() {
 
 
         {/* Guest Word section */}
-        <section className="flex justify-between gap-[2.5px]">
-          {currentWord.split("").map(word => {
+        <section className="flex justify-between gap-[2.5px] mb-10">
+          {currentWord.split("").map((letter, index) => {
 
             return (
-              <span key={word} className="px-[6px] py-[8px] w-[45px] bg-[#323232] text-center text-[18px] border-b border-[#F9F4DA] text-[#F9F4DA] font-bold">{word.toUpperCase()}</span>
+              <span key={index} className="px-[6px] py-[8px] w-[45px] bg-[#323232] text-center text-[18px] border-b border-[#F9F4DA] text-[#F9F4DA] font-bold">
+                {letter.toUpperCase()}
+              </span>
             )
           })}
+        </section>
+
+
+        {/* Keyboard section */}
+        <section className="h-[164px] w-[480px] flex flex-wrap gap-[8px] content-start items-center justify-center mb-[25px]">
+          {alphabets.split("").map((key, index) => {
+            
+            return (
+              <button 
+                key={index}
+                className="w-[40px] h-[40px] p-[6px] border border-[#D7D7D7] cursor-pointer flex items-center justify-center bg-[#FCBA29] rounded-[4px] text-[16px] font-[600]"
+              >
+                {key.toUpperCase()}
+              </button>
+            )
+          })}
+        </section>
+
+        {/* button: new Game */}
+        <section>
+          <button className="w-[228px] h-[40px] px-[12px] py-[6px] cursor-pointer bg-[#11B5E5] rounded-[4px] border border-[#D7D7D7] text-[16px] font-[600] text-[#1E1E1E]">
+            New Game
+          </button>
         </section>
       </main>
     </>
