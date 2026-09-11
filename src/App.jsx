@@ -1,11 +1,27 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
 import lanaguages from "./lanaguages"
 
 function App() {
   const [currentWord, setCurrentWord] = useState("react")
-
+  const [guessLetter, setGuessLetter] = useState([]);
   const alphabets = "abcdefghijklmnopqrstuvwxyz";
+
+
+  function handleKeyClick(e) {
+
+    let letter = e.currentTarget.value;
+    
+    setGuessLetter(prevLetters => {
+      if(prevLetters.includes(letter)) {
+        return prevLetters;
+      }
+
+      return [prevLetters, ...letter]
+    })
+    
+  }
   
+  console.log(guessLetter)
   return (
     <>
       <header className="min-h-[144px] w-full flex flex-col gap-[20px] items-center mb-12">
@@ -58,7 +74,9 @@ function App() {
             return (
               <button 
                 key={index}
-                className="s:w-[40px] s:h-[40px] w-[35px] h-[35px] p-[6px] border border-[#D7D7D7] cursor-pointer flex items-center justify-center bg-[#FCBA29] rounded-[4px] text-[16px] font-[600]"
+                className="s:w-[40px] s:h-[40px] w-[35px] h-[35px] p-[6px] border border-[#D7D7D7] cursor-pointer flex items-center justify-center bg-[#FCBA29] rounded-[4px] text-[16px] font-[600] active:border-[2px] active:border-black"
+                value={key}
+                onClick={handleKeyClick}
               >
                 {key.toUpperCase()}
               </button>

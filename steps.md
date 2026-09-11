@@ -40,6 +40,16 @@
  * Challenge: 
   Display the keyboard ⌨️. Use `<button>`s for each letter
   since it'll need to be clickable and tab-accessible.
+
+
+## Step 6:  Allow the user to start guessing the letters
+ * Challenge: Create a new array in state to hold user's
+  guessed letters. When the user chooses a letter, add
+  that letter to this state array.
+  
+ * Don't worry about whether it was a right or wrong 
+  guess yet.
+ 
  
  
  
