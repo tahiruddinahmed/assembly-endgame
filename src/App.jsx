@@ -16,7 +16,7 @@ function App() {
         return prevLetters;
       }
 
-      return [prevLetters, ...letter]
+      return [...prevLetters, letter]
     })
     
   }
