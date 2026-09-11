@@ -52,13 +52,13 @@ function App() {
 
 
         {/* Keyboard section */}
-        <section className="h-[164px] w-[480px] flex flex-wrap gap-[8px] content-start items-center justify-center mb-[25px]">
+        <section className="h-[164px] w-[360px] sm:w-[480px] flex flex-wrap s:gap-[8px] gap-[10px] content-start items-center justify-center sm:mb-[25px] mb-[40px]">
           {alphabets.split("").map((key, index) => {
             
             return (
               <button 
                 key={index}
-                className="w-[40px] h-[40px] p-[6px] border border-[#D7D7D7] cursor-pointer flex items-center justify-center bg-[#FCBA29] rounded-[4px] text-[16px] font-[600]"
+                className="s:w-[40px] s:h-[40px] w-[35px] h-[35px] p-[6px] border border-[#D7D7D7] cursor-pointer flex items-center justify-center bg-[#FCBA29] rounded-[4px] text-[16px] font-[600]"
               >
                 {key.toUpperCase()}
               </button>
@@ -66,13 +66,15 @@ function App() {
           })}
         </section>
 
+        
+      </main>
+
+      <footer className="flex justify-center">
         {/* button: new Game */}
-        <section>
           <button className="w-[228px] h-[40px] px-[12px] py-[6px] cursor-pointer bg-[#11B5E5] rounded-[4px] border border-[#D7D7D7] text-[16px] font-[600] text-[#1E1E1E]">
             New Game
           </button>
-        </section>
-      </main>
+      </footer>
     </>
   ) 
 }
