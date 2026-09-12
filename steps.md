@@ -49,6 +49,9 @@
   
  * Don't worry about whether it was a right or wrong 
   guess yet.
+
+## Step 7: Allow the user to use the keyboard to guest the word 
+  * Challenge: Press a key on the keyboard (for example, press A) → the A button should behave as if it was clicked.
  
  
  

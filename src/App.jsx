@@ -1,25 +1,47 @@
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import lanaguages from "./lanaguages"
 
 function App() {
   const [currentWord, setCurrentWord] = useState("react")
   const [guessLetter, setGuessLetter] = useState([]);
   const alphabets = "abcdefghijklmnopqrstuvwxyz";
+  const [keyError, setKeyError] = useState(null)
 
 
   function handleKeyClick(e) {
-
     let letter = e.currentTarget.value;
-    
+
+    addLetter(letter)
+  }
+
+  // add letter 
+  function addLetter(letter) {
     setGuessLetter(prevLetters => {
       if(prevLetters.includes(letter)) {
         return prevLetters;
-      }
+      } 
 
       return [...prevLetters, letter]
     })
-    
   }
+
+  useEffect(() => {
+    const handleKeyBoard = (e) => {
+      const letter = e.key.toLowerCase();
+
+      if(/^[a-z]$/.test(letter) && alphabets.includes(letter)) { // .test Returns a Boolean value that indicates whether or not a pattern exists in a searched string.
+        addLetter(letter)
+
+        setKeyError(prevValue => null)
+      } 
+    }
+
+    window.addEventListener('keydown', handleKeyBoard)
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyBoard)
+    }
+  }, [])
   
   console.log(guessLetter)
   return (
@@ -77,6 +99,7 @@ function App() {
                 className="s:w-[40px] s:h-[40px] w-[35px] h-[35px] p-[6px] border border-[#D7D7D7] cursor-pointer flex items-center justify-center bg-[#FCBA29] rounded-[4px] text-[16px] font-[600] active:border-[2px] active:border-black"
                 value={key}
                 onClick={handleKeyClick}
+                // onKeyDown={handleKeyboard}
               >
                 {key.toUpperCase()}
               </button>
@@ -87,7 +110,7 @@ function App() {
         
       </main>
 
-      <footer className="flex justify-center">
+      <footer className="flex flex-col items-center justify-center">
         {/* button: new Game */}
           <button className="w-[228px] h-[40px] px-[12px] py-[6px] cursor-pointer bg-[#11B5E5] rounded-[4px] border border-[#D7D7D7] text-[16px] font-[600] text-[#1E1E1E]">
             New Game
