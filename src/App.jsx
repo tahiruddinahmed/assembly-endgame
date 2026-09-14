@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from "react"
 import lanaguages from "./lanaguages"
+import clsx from "clsx";
 
 function App() {
   const [currentWord, setCurrentWord] = useState("react")
   const [guessLetter, setGuessLetter] = useState([]);
   const alphabets = "abcdefghijklmnopqrstuvwxyz";
-  const [keyError, setKeyError] = useState(null)
+
 
 
   function handleKeyClick(e) {
@@ -31,8 +32,6 @@ function App() {
 
       if(/^[a-z]$/.test(letter) && alphabets.includes(letter)) { // .test Returns a Boolean value that indicates whether or not a pattern exists in a searched string.
         addLetter(letter)
-
-        setKeyError(prevValue => null)
       } 
     }
 
@@ -92,11 +91,18 @@ function App() {
         {/* Keyboard section */}
         <section className="h-[164px] w-[360px] sm:w-[480px] flex flex-wrap s:gap-[8px] gap-[10px] content-start items-center justify-center sm:mb-[25px] mb-[40px]">
           {alphabets.split("").map((key, index) => {
+            const isGuessed = guessLetter.includes(key);
+            const isCorrect = isGuessed && currentWord.includes(key);
+            const isWrong = isGuessed && !currentWord.includes(key);
+
             
             return (
               <button 
                 key={index}
-                className="s:w-[40px] s:h-[40px] w-[35px] h-[35px] p-[6px] border border-[#D7D7D7] cursor-pointer flex items-center justify-center bg-[#FCBA29] rounded-[4px] text-[16px] font-[600] active:border-[2px] active:border-black"
+                className={clsx("s:w-[40px] s:h-[40px] w-[35px] h-[35px] p-[6px] border border-[#D7D7D7] cursor-pointer flex items-center justify-center bg-[#FCBA29] rounded-[4px] text-[16px] font-[600] active:border-[2px] active:border-black",
+                  isCorrect && 'bg-green-500',
+                  isWrong && 'bg-red-500'
+                )}
                 value={key}
                 onClick={handleKeyClick}
                 // onKeyDown={handleKeyboard}

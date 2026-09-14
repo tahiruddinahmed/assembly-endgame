@@ -55,4 +55,11 @@
  
  
  
+## Step 8: Goal: Allow the user to start guessing the letters 
+ * Challenge: Update the keyboard when a letter is right
+  or wrong.
+  
+ * Bonus: use the `clsx` package to easily add conditional 
+  classNames to the keys of the keyboard. Check the docs 
+  to learn how to use it 📖
  
