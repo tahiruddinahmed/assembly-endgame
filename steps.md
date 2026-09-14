@@ -62,4 +62,10 @@
  * Bonus: use the `clsx` package to easily add conditional 
   classNames to the keys of the keyboard. Check the docs 
   to learn how to use it 📖
+
+## Step 9: Goal: Allow the user to start guessing the letters
+
+ * Challenge: Only display the correctly-guessed letters
+ in the word
+
  

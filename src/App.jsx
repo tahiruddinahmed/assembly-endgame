@@ -78,10 +78,13 @@ function App() {
         {/* Guest Word section */}
         <section className="flex justify-between gap-[2.5px] mb-10">
           {currentWord.split("").map((letter, index) => {
-
+            const isGussed = guessLetter.includes(letter);
+            
             return (
-              <span key={index} className="px-[6px] py-[8px] w-[45px] bg-[#323232] text-center text-[18px] border-b border-[#F9F4DA] text-[#F9F4DA] font-bold">
-                {letter.toUpperCase()}
+              <span key={index} className="px-[6px] py-[8px] w-[45px] h-[45px] bg-[#323232] text-center text-[18px] border-b border-[#F9F4DA] text-[#F9F4DA] font-bold">
+                {isGussed && (
+                  letter.toUpperCase()
+                )}
               </span>
             )
           })}
@@ -95,7 +98,7 @@ function App() {
             const isCorrect = isGuessed && currentWord.includes(key);
             const isWrong = isGuessed && !currentWord.includes(key);
 
-            
+
             return (
               <button 
                 key={index}
