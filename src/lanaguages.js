@@ -35,7 +35,7 @@ const lanaguages = [
         color: "#1E1E1E",
     },
     {
-        name: "Ruby",
+        name: "Java",
         backgroundColor: "#D02B2B",
         color: "#F9F4DA",
     },

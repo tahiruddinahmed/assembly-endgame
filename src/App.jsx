@@ -68,12 +68,33 @@ function App() {
 
       <main className="w-full flex flex-col justify-center items-center">
         {/* lanaguages section */}
-        <section className="w-[253.5px] flex flex-wrap gap-[1.5px] content-start justify-center overflow-hidden mb-10">
-          {lanaguages.map(lang => {
+        <section 
+          className="w-[253.5px] flex flex-wrap gap-[1.5px] content-start justify-center overflow-hidden 
+          mb-10
+        
+        ">
+          {lanaguages.map((lang, index) => {
+            const disabledOverlay = `
+                before:content-['💀']
+                before:absolute
+                before:flex
+                before:items-center
+                before:justify-center
+                before:h-[100%]
+                before:w-[100%]
+                before:top-0
+                before:left-0
+                before:bg-black/70
+            `;
+            const lostLangauge = index < wrongGuessCount
+            
             return (
               <div 
                 key={lang.name}
-                className="px-[5px] py-[2px] rounded-[3px] text-[11.5px] font-[700] inline-flex items-center h-max whitespace-nowrap" 
+                className={clsx(
+                  "relative px-[5px] py-[2px] rounded-[3px] text-[11.5px] font-[700] inline-flex items-center h-max whitespace-nowrap",
+                  lostLangauge && disabledOverlay
+                )}
                 style={{ backgroundColor: lang.backgroundColor, color: lang.color }}
               >
                 {lang.name}
