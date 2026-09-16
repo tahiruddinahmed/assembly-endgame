@@ -8,6 +8,15 @@ function App() {
   const alphabets = "abcdefghijklmnopqrstuvwxyz";
 
 
+  // Derived variable 
+  const wrongGuessCount = guessLetter.filter(
+    (letter) => !currentWord.includes(letter)
+  ).length;
+  
+  
+  console.log(wrongGuessCount)
+
+
 
   function handleKeyClick(e) {
     let letter = e.currentTarget.value;
@@ -42,7 +51,6 @@ function App() {
     }
   }, [])
   
-  console.log(guessLetter)
   return (
     <>
       <header className="min-h-[144px] w-full flex flex-col gap-[20px] items-center mb-12">
@@ -97,7 +105,6 @@ function App() {
             const isGuessed = guessLetter.includes(key);
             const isCorrect = isGuessed && currentWord.includes(key);
             const isWrong = isGuessed && !currentWord.includes(key);
-
 
             return (
               <button 

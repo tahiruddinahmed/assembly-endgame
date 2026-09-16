@@ -68,4 +68,11 @@
  * Challenge: Only display the correctly-guessed letters
  in the word
 
+## Step 10: Goal: Add in the incorrect guesses mechanism to the game
+ 
+ * Challenge: Derive a variable (`wrongGuessCount`) for the 
+  number of incorrect guesses by using the other state 
+  values we're already holding in the component.
+ 
+
  
