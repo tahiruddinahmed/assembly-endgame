@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from "react"
 import lanaguages from "./lanaguages"
+import { getFarewellText } from "./utils"
 import clsx from "clsx";
 
 function App() {
   const [currentWord, setCurrentWord] = useState("react")
   const [guessLetter, setGuessLetter] = useState([]);
+  // const [farewellMsg, setFarewellMsg] = useState('');
   const alphabets = "abcdefghijklmnopqrstuvwxyz";
-
 
   // Derived variable 
   const wrongGuessCount = guessLetter.filter(
@@ -18,6 +19,10 @@ function App() {
   const isGameOwn = currentWord.split("").every((letter) => guessLetter.includes(letter))
   const isGameLost = wrongGuessCount >= (lanaguages.length - 1);
   const isGameOver = isGameOwn || isGameLost; 
+  const lastGuessedLetter = guessLetter[guessLetter.length - 1]
+  const isLastGuessedIncorrect = lastGuessedLetter && !currentWord.includes(lastGuessedLetter)
+
+  console.log(isLastGuessedIncorrect)
 
   // console.log(isGameOwn)
 
@@ -53,37 +58,10 @@ function App() {
       window.removeEventListener('keydown', handleKeyBoard)
     }
   }, [])
-  
-  return (
-    <>
-      <header className="min-h-[144px] w-full flex flex-col gap-[20px] items-center mb-12">
-        <div className="flex flex-col gap-[4px] items-center">
-          <h1 className="text-[20px] font-medium text-[#F9F4DA] text-center">Assembly: EndGame</h1>
-          <p className="text-[14px] max-w-[350px] text-center text-[#8E8E8E]">Guess the word in under 8 attempts to keep the programming world safe from Assembly!</p>
-        </div>
 
-       {/* Status section */}
-       {isGameOver && (
-        <div className={clsx(
-          "px-[6px] py-[6px] w-[352px] rounded-[4px] flex flex-col items-center justify-center",
-          isGameOwn && 'bg-[#10A95B]',
-          isGameLost && 'bg-[#c72c09]'
-        )}>
-            <h2 className="text-[20px] text-[#F9F4DA]">{ isGameOwn ?  'You Win!' : 'You Lost'}</h2>
-            <p className="text-[16px] text-[#F9F4DA]">{isGameOwn ? 'Well done! 🎉' : 'You lose! Better start learning Assembly 😭'}</p>
-        </div>
-       )}
-      </header>
 
-      <main className="w-full flex flex-col justify-center items-center">
-        {/* lanaguages section */}
-        <section 
-          className="w-[253.5px] flex flex-wrap gap-[1.5px] content-start justify-center overflow-hidden 
-          mb-10
-        
-        ">
-          {lanaguages.map((lang, index) => {
-            const disabledOverlay = `
+  const languageElements = lanaguages.map((lang, index) => {
+     const disabledOverlay = `
                 before:content-['💀']
                 before:absolute
                 before:flex
@@ -98,6 +76,7 @@ function App() {
             const lostLangauge = index < wrongGuessCount
             
             return (
+              
               <div 
                 key={lang.name}
                 className={clsx(
@@ -108,8 +87,65 @@ function App() {
               >
                 {lang.name}
               </div>
+              
             )
-          })}
+  })
+
+
+  // render game status 
+  function renderStatus() {
+    if(!isGameOver && isLastGuessedIncorrect) {
+     return (
+            <p className="text-[16px] text-[#F9F4DA]">{getFarewellText(lanaguages[wrongGuessCount - 1].name)}</p>
+     ); 
+    } 
+
+    if(isGameOwn) {
+      return (
+          <>
+            <h2 className="text-[20px] text-[#F9F4DA]">You Win!</h2>
+            <p className="text-[16px] text-[#F9F4DA]">Well done! 🎉</p>
+          </>
+      )
+    }
+    if(isGameLost) {
+      return (
+          <>
+            <h2 className="text-[20px] text-[#F9F4DA]">You Lost!</h2>
+            <p className="text-[16px] text-[#F9F4DA]">You lose! Better start learning Assembly 😭</p>
+          </>
+      )
+    }
+
+
+    return null;
+  }
+  
+  return (
+    <>
+      <header className="min-h-[144px] w-full flex flex-col gap-[20px] items-center mb-12">
+        <div className="flex flex-col gap-[4px] items-center">
+          <h1 className="text-[20px] font-medium text-[#F9F4DA] text-center">Assembly: EndGame</h1>
+          <p className="text-[14px] max-w-[350px] text-center text-[#8E8E8E]">Guess the word in under 8 attempts to keep the programming world safe from Assembly!</p>
+        </div>
+
+      <div className={clsx(
+          "px-[6px] py-[6px] w-[352px] rounded-[4px] flex flex-col items-center justify-center",
+          isGameOwn && 'bg-[#10A95B]',
+          isGameLost && 'bg-[#c72c09]',
+          (!isGameOver && isLastGuessedIncorrect) && 'bg-[#a40ec2] border border-dashed'
+        )}>
+        {renderStatus()}
+
+        </div>
+      </header>
+
+      <main className="w-full flex flex-col justify-center items-center">
+        {/* lanaguages section */}
+        <section 
+          className="w-[253.5px] flex flex-wrap gap-[1.5px] content-start justify-center overflow-hidden 
+          mb-10">
+          {languageElements}
         </section>
 
 

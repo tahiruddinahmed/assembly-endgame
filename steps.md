@@ -106,4 +106,25 @@
  * Note: We always want the surrounding `section` to be rendered,
   so only change the content inside that section. Otherwise the
   content on the page would jump around a bit too much.
+
+## BackLog: Feature needs to implement 
+  - Farewell message in the status section 
+  - fix a11y issues - "accessibility" is the short abbreviation is "a11y
+  - make the new game button work 
+  - choose a random word, on every new game. 
+  - when game own: drop `confetti`.  
+
+
+## Step 14: Challenge: Bid farewell to each programming language as it gets erased from existance 👋😭
+ 
+ * Use the `getFarewellText` function from the new utils.js
+  file to generate the text.
+  
+ * Check hint.md if you're feeling stuck, but do your best
+  to solve the challenge without the hint! 🕵️
+
+- `Hint`: You'll need to find a way to know if the most recently-
+guessed letter was correct or not, so you're only
+displaying the farewell message after wrong guesses.
+ 
  
