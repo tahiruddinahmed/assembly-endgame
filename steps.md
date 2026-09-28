@@ -94,3 +94,16 @@
     remove languages from the languages array.
  2. Conditionally render the New Game button only if the game
     is over.
+
+
+## Step 13: Goal: Add in the incorrect guesses mechanism to the game
+ 
+ * Challenge:
+  Conditionally render either the "won" or "lost" statuses
+  from the design, both the text and the styles, based on the
+  new derived variables.
+  
+ * Note: We always want the surrounding `section` to be rendered,
+  so only change the content inside that section. Otherwise the
+  content on the page would jump around a bit too much.
+ 

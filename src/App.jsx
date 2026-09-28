@@ -63,10 +63,16 @@ function App() {
         </div>
 
        {/* Status section */}
-       <div className="px-[6px] py-[6px] w-[352px] bg-[#10A95B] rounded-[4px] flex flex-col items-center justify-center">
-          <h2 className="text-[20px] text-[#F9F4DA]">You Win!</h2>
-          <p className="text-[16px] text-[#F9F4DA]">Well done! 🎉</p>
-       </div>
+       {isGameOver && (
+        <div className={clsx(
+          "px-[6px] py-[6px] w-[352px] rounded-[4px] flex flex-col items-center justify-center",
+          isGameOwn && 'bg-[#10A95B]',
+          isGameLost && 'bg-[#c72c09]'
+        )}>
+            <h2 className="text-[20px] text-[#F9F4DA]">{ isGameOwn ?  'You Win!' : 'You Lost'}</h2>
+            <p className="text-[16px] text-[#F9F4DA]">{isGameOwn ? 'Well done! 🎉' : 'You lose! Better start learning Assembly 😭'}</p>
+        </div>
+       )}
       </header>
 
       <main className="w-full flex flex-col justify-center items-center">
