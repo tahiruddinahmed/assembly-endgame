@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react"
 import lanaguages from "./lanaguages"
-import { getFarewellText } from "./utils"
+import { getFarewellText, PickRandomWord } from "./utils"
 import clsx from "clsx";
 
 function App() {
-  const [currentWord, setCurrentWord] = useState("react")
+  const [currentWord, setCurrentWord] = useState(PickRandomWord())
   const [guessLetter, setGuessLetter] = useState([]);
   // const [farewellMsg, setFarewellMsg] = useState('');
   const alphabets = "abcdefghijklmnopqrstuvwxyz";
