@@ -22,7 +22,7 @@ function App() {
   const lastGuessedLetter = guessLetter[guessLetter.length - 1]
   const isLastGuessedIncorrect = lastGuessedLetter && !currentWord.includes(lastGuessedLetter)
 
-  console.log(isLastGuessedIncorrect)
+  // console.log(isLastGuessedIncorrect)
 
   // console.log(isGameOwn)
 
@@ -45,19 +45,22 @@ function App() {
 
   useEffect(() => {
     const handleKeyBoard = (e) => {
+      if(isGameOver) return;
       const letter = e.key.toLowerCase();
 
-      if(/^[a-z]$/.test(letter) && alphabets.includes(letter)) { // .test Returns a Boolean value that indicates whether or not a pattern exists in a searched string.
-        addLetter(letter)
-      } 
-    }
+      // isGameOver is true then disabled the keyboard
+        if(/^[a-z]$/.test(letter) && alphabets.includes(letter)) { // .test Returns a Boolean value that indicates whether or not a pattern exists in a searched string.
+          addLetter(letter)
+        } 
 
-    window.addEventListener('keydown', handleKeyBoard)
+
+    }
+      window.addEventListener('keydown', handleKeyBoard)
 
     return () => {
       window.removeEventListener('keydown', handleKeyBoard)
     }
-  }, [])
+  }, [isGameOver])
 
 
   const languageElements = lanaguages.map((lang, index) => {
@@ -96,7 +99,7 @@ function App() {
   function renderStatus() {
     if(!isGameOver && isLastGuessedIncorrect) {
      return (
-            <p className="text-[16px] text-[#F9F4DA]">{getFarewellText(lanaguages[wrongGuessCount - 1].name)}</p>
+            <p className="text-[16px] text-[#F9F4DA] italic">{getFarewellText(lanaguages[wrongGuessCount - 1].name)}</p>
      ); 
     } 
 
@@ -181,6 +184,7 @@ function App() {
                 )}
                 value={key}
                 onClick={handleKeyClick}
+                disabled={isGameOver}
                 // onKeyDown={handleKeyboard}
               >
                 {key.toUpperCase()}
