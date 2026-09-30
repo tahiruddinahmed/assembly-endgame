@@ -132,12 +132,16 @@ function App() {
           <p className="text-[14px] max-w-[350px] text-center text-[#8E8E8E]">Guess the word in under 8 attempts to keep the programming world safe from Assembly!</p>
         </div>
 
-      <div className={clsx(
+      <div 
+        aria-live="polite" 
+        role="status" 
+        className={clsx(
           "px-[6px] py-[6px] w-[352px] rounded-[4px] flex flex-col items-center justify-center",
           isGameOwn && 'bg-[#10A95B]',
           isGameLost && 'bg-[#c72c09]',
           (!isGameOver && isLastGuessedIncorrect) && 'bg-[#a40ec2] border border-dashed'
-        )}>
+        )}
+      >
         {renderStatus()}
 
         </div>
@@ -168,6 +172,18 @@ function App() {
         </section>
 
 
+        {/* sr-only */}
+        <section 
+          className="sr-only"
+          aria-live="polite"
+          role="Current word"
+        >
+          <p>Current Word: {currentWord.split("").map(letter => 
+            guessLetter.includes(letter) ? letter + "." : "blank"
+          ).join(" ")}</p>
+        </section>
+
+
         {/* Keyboard section */}
         <section className="h-[164px] w-[360px] sm:w-[480px] flex flex-wrap s:gap-[8px] gap-[10px] content-start items-center justify-center sm:mb-[25px] mb-[40px]">
           {alphabets.split("").map((key, index) => {
@@ -185,6 +201,8 @@ function App() {
                 value={key}
                 onClick={handleKeyClick}
                 disabled={isGameOver}
+                aria-disabled={guessLetter.includes(key)}
+                aria-label={`Letter ${key}`}
                 // onKeyDown={handleKeyboard}
               >
                 {key.toUpperCase()}
