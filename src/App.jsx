@@ -4,9 +4,8 @@ import { getFarewellText, PickRandomWord } from "./utils"
 import clsx from "clsx";
 
 function App() {
-  const [currentWord, setCurrentWord] = useState(PickRandomWord())
+  const [currentWord, setCurrentWord] = useState(() => PickRandomWord())
   const [guessLetter, setGuessLetter] = useState([]);
-  // const [farewellMsg, setFarewellMsg] = useState('');
   const alphabets = "abcdefghijklmnopqrstuvwxyz";
 
   // Derived variable 
@@ -22,9 +21,12 @@ function App() {
   const lastGuessedLetter = guessLetter[guessLetter.length - 1]
   const isLastGuessedIncorrect = lastGuessedLetter && !currentWord.includes(lastGuessedLetter)
 
-  // console.log(isLastGuessedIncorrect)
+  // new game button : reset the game 
+  function startNewGame() {
+    setCurrentWord(prev => PickRandomWord())
+    setGuessLetter(prev => [])
 
-  // console.log(isGameOwn)
+  }
 
   function handleKeyClick(e) {
     let letter = e.currentTarget.value;
@@ -217,7 +219,11 @@ function App() {
       <footer className="flex flex-col items-center justify-center">
         {/* button: new Game */}
         {isGameOver && (
-            <button className="w-[228px] h-[40px] px-[12px] py-[6px] cursor-pointer bg-[#11B5E5] rounded-[4px] border border-[#D7D7D7] text-[16px] font-[600] text-[#1E1E1E]">
+            <button 
+              className="w-[228px] h-[40px] px-[12px] py-[6px] cursor-pointer bg-[#11B5E5] rounded-[4px] border border-[#D7D7D7] text-[16px] font-[600] text-[#1E1E1E]"
+              onClick={startNewGame}  
+            >
+
               New Game
             </button>
 

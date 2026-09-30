@@ -132,6 +132,10 @@ displaying the farewell message after wrong guesses.
 ### Step 16: Choose a random word 
   * Check the `src/words.js` I have created an array of words. 
   * export it in the `utils.js`, and create a new function which choose a random word out of the array. 
-  * and then, in the `App.jsx` import it and figure out how to use it. 
+  * and then, in the `App.jsx` import it and figure out how to use it.
+
+
+### Step 17: Challenge: Make the New Game button reset the game
+ 
  
  
