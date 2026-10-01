@@ -135,9 +135,9 @@ function App() {
           height={window.innerHeight}
         />
       )}
-      <header className="min-h-[144px] w-full flex flex-col gap-[20px] items-center mb-12">
+      <header className="sm:min-h-[144px] min-h-[120px] w-full flex flex-col gap-[20px] items-center mb-12">
         <div className="flex flex-col gap-[4px] items-center">
-          <h1 className="text-[20px] font-medium text-[#F9F4DA] text-center">Assembly: EndGame</h1>
+          <h1 className="sm:text-[20px] text-[24px] font-medium text-[#F9F4DA] text-center">Assembly: EndGame</h1>
           <p className="text-[14px] max-w-[350px] text-center text-[#8E8E8E]">Guess the word in under 8 attempts to keep the programming world safe from Assembly!</p>
         </div>
 
