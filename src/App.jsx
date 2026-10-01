@@ -165,9 +165,17 @@ function App() {
             
             return (
               <span key={index} className="px-[6px] py-[8px] w-[45px] h-[45px] bg-[#323232] text-center text-[18px] border-b border-[#F9F4DA] text-[#F9F4DA] font-bold">
-                {isGussed && (
+                
+                
+                {isGameLost ? 
                   letter.toUpperCase()
-                )}
+                :
+                  isGussed && (
+                    letter.toUpperCase()
+                  )
+                
+                }
+
               </span>
             )
           })}

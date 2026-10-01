@@ -137,5 +137,7 @@ displaying the farewell message after wrong guesses.
 
 ### Step 17: Challenge: Make the New Game button reset the game
  
+
+### Step 17: Reveal the current word, if game is lost
  
  
