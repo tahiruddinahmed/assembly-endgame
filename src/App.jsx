@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import lanaguages from "./lanaguages"
 import { getFarewellText, PickRandomWord } from "./utils"
 import clsx from "clsx";
+import Confetti from "react-confetti";
 
 function App() {
   const [currentWord, setCurrentWord] = useState(() => PickRandomWord())
@@ -128,6 +129,12 @@ function App() {
   
   return (
     <>
+      {isGameOwn && (
+        <Confetti 
+          width={window.innerWidth}
+          height={window.innerHeight}
+        />
+      )}
       <header className="min-h-[144px] w-full flex flex-col gap-[20px] items-center mb-12">
         <div className="flex flex-col gap-[4px] items-center">
           <h1 className="text-[20px] font-medium text-[#F9F4DA] text-center">Assembly: EndGame</h1>

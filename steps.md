@@ -138,6 +138,10 @@ displaying the farewell message after wrong guesses.
 ### Step 17: Challenge: Make the New Game button reset the game
  
 
-### Step 17: Reveal the current word, if game is lost
+### Step 18: Reveal the current word, if game is lost
+
+### Step 19: Drop `confetti` when game is own. 
+  * `npm i react-confetti` React Confetti package. 
+  * learn and implement confetti package when game is own. 
  
  
